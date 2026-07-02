@@ -1,0 +1,563 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "behavior-case.schema.json",
+  "title": "BehaviorCase",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "title",
+    "category",
+    "split",
+    "tags",
+    "message",
+    "context",
+    "mock_events",
+    "expected",
+    "forbidden_actions",
+    "assertions",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^BC-[A-Z]+-[0-9]{3}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "enum": [
+        "policy",
+        "tracking",
+        "return",
+        "damaged",
+        "refund",
+        "unknown",
+        "multi_intent",
+        "safety"
+      ]
+    },
+    "split": {
+      "enum": [
+        "smoke",
+        "test"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context": {
+      "type": "object"
+    },
+    "mock_events": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "expected": {
+      "$ref": "#/$defs/expected"
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_intent",
+        "secondary_intents",
+        "active_intent",
+        "relation_type",
+        "execution_plan",
+        "entities",
+        "missing_fields",
+        "invalid_fields",
+        "ambiguous_fields",
+        "conflicting_fields",
+        "workflow_status",
+        "verification_status",
+        "safety_status",
+        "current_route",
+        "next_action",
+        "selected_tool",
+        "tool_status",
+        "tool_error_code",
+        "human_handling_status",
+        "reason_code",
+        "reason_details",
+        "business_result_code",
+        "priority",
+        "response_constraints"
+      ],
+      "properties": {
+        "primary_intent": {
+          "enum": [
+            "policy_question",
+            "order_tracking",
+            "return_request",
+            "damaged_product",
+            "refund_request",
+            "unknown"
+          ]
+        },
+        "secondary_intents": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "policy_question",
+              "order_tracking",
+              "return_request",
+              "damaged_product",
+              "refund_request",
+              "unknown"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "active_intent": {
+          "enum": [
+            "policy_question",
+            "order_tracking",
+            "return_request",
+            "damaged_product",
+            "refund_request",
+            "unknown"
+          ]
+        },
+        "relation_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "independent",
+                "sequential",
+                "conditional_dependency",
+                "high_risk_combination"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "execution_plan": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step_id",
+              "intent",
+              "route",
+              "status",
+              "condition"
+            ],
+            "properties": {
+              "step_id": {
+                "type": "string"
+              },
+              "intent": {
+                "enum": [
+                  "policy_question",
+                  "order_tracking",
+                  "return_request",
+                  "damaged_product",
+                  "refund_request",
+                  "unknown"
+                ]
+              },
+              "route": {
+                "enum": [
+                  "clarify",
+                  "collect_fields",
+                  "verify_customer",
+                  "retrieve_policy",
+                  "execute_order",
+                  "execute_return",
+                  "execute_ticket",
+                  "request_confirmation",
+                  "human_handoff",
+                  "respond",
+                  "safety_block"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "active",
+                  "queued",
+                  "blocked",
+                  "completed",
+                  "skipped"
+                ]
+              },
+              "condition": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "entities": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "order_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "customer_email": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "item_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "product_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "resolved_item_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "policy_category": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "issue_description": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "damage_type": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "return_reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "refund_reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "refund_scope": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "user_confirmation": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          }
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "invalid_fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field",
+              "value",
+              "reason"
+            ],
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "value": {},
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "ambiguous_fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field",
+              "candidates"
+            ],
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "candidates": {
+                "type": "array"
+              }
+            }
+          }
+        },
+        "conflicting_fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field",
+              "old_value",
+              "new_value"
+            ],
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "old_value": {},
+              "new_value": {}
+            }
+          }
+        },
+        "workflow_status": {
+          "enum": [
+            "intent_detected",
+            "multiple_intents_detected",
+            "clarification_required",
+            "missing_information",
+            "verification_pending",
+            "verification_failed",
+            "ready_for_tool",
+            "confirmation_pending",
+            "tool_completed",
+            "tool_error",
+            "handoff_required",
+            "handoff_created",
+            "completed",
+            "blocked"
+          ]
+        },
+        "verification_status": {
+          "enum": [
+            "not_required",
+            "not_started",
+            "verified",
+            "failed",
+            "error"
+          ]
+        },
+        "safety_status": {
+          "enum": [
+            "safe",
+            "blocked",
+            "handoff_required"
+          ]
+        },
+        "current_route": {
+          "enum": [
+            "clarify",
+            "collect_fields",
+            "verify_customer",
+            "retrieve_policy",
+            "execute_order",
+            "execute_return",
+            "execute_ticket",
+            "request_confirmation",
+            "human_handoff",
+            "respond",
+            "safety_block"
+          ]
+        },
+        "next_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_tool": {
+          "anyOf": [
+            {
+              "enum": [
+                "search_policy",
+                "verify_order_owner",
+                "get_order_status",
+                "find_order_item",
+                "check_return_eligibility",
+                "create_return_request",
+                "create_support_ticket",
+                "request_human_handoff"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tool_status": {
+          "enum": [
+            "not_called",
+            "pending",
+            "success",
+            "failed",
+            "timeout",
+            "unknown"
+          ]
+        },
+        "tool_error_code": {
+          "anyOf": [
+            {
+              "enum": [
+                "timeout",
+                "unavailable",
+                "invalid_response",
+                "not_found",
+                "duplicate",
+                "idempotency_required",
+                "side_effect_unknown"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "human_handling_status": {
+          "enum": [
+            "not_required",
+            "required_later",
+            "ready_now",
+            "created"
+          ]
+        },
+        "reason_code": {
+          "anyOf": [
+            {
+              "enum": [
+                "missing_required_field",
+                "invalid_field",
+                "ambiguous_entity",
+                "conflicting_information",
+                "ambiguous_intent",
+                "clarification_limit_reached",
+                "verification_failed",
+                "verification_attempts_exceeded",
+                "insufficient_policy_evidence",
+                "tool_unavailable",
+                "tool_execution_failed",
+                "side_effect_unknown",
+                "refund_requires_human",
+                "user_requested_human",
+                "payment_dispute",
+                "product_safety_risk",
+                "suspected_fraud",
+                "prompt_injection",
+                "unauthorized_action",
+                "sensitive_data_request",
+                "unsupported_request",
+                "complex_multi_intent",
+                "delivery_dispute",
+                "return_eligibility_dispute"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_details": {
+          "type": "object"
+        },
+        "business_result_code": {
+          "anyOf": [
+            {
+              "enum": [
+                "policy_answered",
+                "order_status_returned",
+                "eligible",
+                "not_eligible",
+                "return_request_created",
+                "ticket_created",
+                "user_declined"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "priority": {
+          "anyOf": [
+            {
+              "enum": [
+                "low",
+                "normal",
+                "high",
+                "critical"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "response_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

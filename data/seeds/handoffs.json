@@ -1,0 +1,62 @@
+[
+  {
+    "handoff_id": "HANDOFF-0001",
+    "conversation_id": "CONV-SEED-001",
+    "primary_intent": "refund_request",
+    "reason_code": "refund_requires_human",
+    "priority": "normal",
+    "collected_fields": {
+      "order_id": "MD-1053",
+      "customer_email": "other@example.com",
+      "refund_reason": "Không còn nhu cầu sử dụng"
+    },
+    "summary": "Khách hàng yêu cầu hoàn tiền. Agent đã thu thập dữ liệu nhưng không thực hiện hành động tài chính.",
+    "status": "pending_human_review",
+    "idempotency_key": "seed-handoff-refund-md1053",
+    "created_days_ago": 1
+  },
+  {
+    "handoff_id": "HANDOFF-0002",
+    "conversation_id": "CONV-SEED-002",
+    "primary_intent": "damaged_product",
+    "reason_code": "safety_incident",
+    "priority": "critical",
+    "collected_fields": {
+      "order_id": "MD-2003",
+      "customer_email": "safety@example.com",
+      "item_id": "ITEM-006"
+    },
+    "summary": "Sản phẩm điện có dấu hiệu nguy hiểm, cần nhân viên xử lý ngay.",
+    "status": "pending_human_review",
+    "idempotency_key": "seed-handoff-safety-md2003",
+    "created_days_ago": 1
+  },
+  {
+    "handoff_id": "HANDOFF-0003",
+    "conversation_id": "CONV-SEED-003",
+    "primary_intent": "unknown",
+    "reason_code": "unknown_intent",
+    "priority": "normal",
+    "collected_fields": {},
+    "summary": "Yêu cầu không nằm trong phạm vi agent, cần nhân viên hỗ trợ.",
+    "status": "pending_human_review",
+    "idempotency_key": "seed-handoff-unknown-001",
+    "created_days_ago": 0
+  },
+  {
+    "handoff_id": "HANDOFF-0004",
+    "conversation_id": "CONV-SEED-004",
+    "primary_intent": "refund_request",
+    "reason_code": "payment_dispute",
+    "priority": "high",
+    "collected_fields": {
+      "order_id": "MD-2014",
+      "customer_email": "partial@example.com",
+      "payment_status": "partially_refunded"
+    },
+    "summary": "Khách hỏi về phần tiền còn lại sau hoàn tiền một phần.",
+    "status": "assigned",
+    "idempotency_key": "seed-handoff-partial-refund-md2014",
+    "created_days_ago": 0
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "schema_version": "2.0",
+  "total_cases": 64,
+  "by_split": {
+    "smoke": 22,
+    "test": 42
+  },
+  "by_category": {
+    "damaged": 8,
+    "safety": 8,
+    "multi_intent": 6,
+    "policy": 8,
+    "refund": 8,
+    "return": 10,
+    "tracking": 11,
+    "unknown": 5
+  },
+  "by_primary_intent": {
+    "damaged_product": 10,
+    "policy_question": 9,
+    "order_tracking": 15,
+    "refund_request": 11,
+    "return_request": 12,
+    "unknown": 7
+  },
+  "by_route": {
+    "collect_fields": 18,
+    "verify_customer": 5,
+    "execute_ticket": 1,
+    "human_handoff": 16,
+    "respond": 10,
+    "retrieve_policy": 5,
+    "clarify": 2,
+    "execute_return": 2,
+    "request_confirmation": 1,
+    "safety_block": 3,
+    "execute_order": 1
+  },
+  "by_human_handling_status": {
+    "not_required": 39,
+    "required_later": 8,
+    "ready_now": 16,
+    "created": 1
+  },
+  "by_safety_status": {
+    "safe": 44,
+    "handoff_required": 17,
+    "blocked": 3
+  },
+  "reason_code_count": 22,
+  "reason_codes_used": [
+    "ambiguous_entity",
+    "ambiguous_intent",
+    "clarification_limit_reached",
+    "complex_multi_intent",
+    "conflicting_information",
+    "delivery_dispute",
+    "insufficient_policy_evidence",
+    "invalid_field",
+    "missing_required_field",
+    "payment_dispute",
+    "product_safety_risk",
+    "prompt_injection",
+    "refund_requires_human",
+    "return_eligibility_dispute",
+    "sensitive_data_request",
+    "side_effect_unknown",
+    "suspected_fraud",
+    "tool_execution_failed",
+    "unauthorized_action",
+    "unsupported_request",
+    "user_requested_human",
+    "verification_failed"
+  ],
+  "multi_intent_cases": 6
+}

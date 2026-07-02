@@ -1,0 +1,244 @@
+{
+  "schema_version": "2.0",
+  "project_name": "E-commerce Support Agent Mini",
+  "intents": [
+    "policy_question",
+    "order_tracking",
+    "return_request",
+    "damaged_product",
+    "refund_request",
+    "unknown"
+  ],
+  "relation_types": [
+    "independent",
+    "sequential",
+    "conditional_dependency",
+    "high_risk_combination"
+  ],
+  "routes": [
+    "clarify",
+    "collect_fields",
+    "verify_customer",
+    "retrieve_policy",
+    "execute_order",
+    "execute_return",
+    "execute_ticket",
+    "request_confirmation",
+    "human_handoff",
+    "respond",
+    "safety_block"
+  ],
+  "workflow_statuses": [
+    "intent_detected",
+    "multiple_intents_detected",
+    "clarification_required",
+    "missing_information",
+    "verification_pending",
+    "verification_failed",
+    "ready_for_tool",
+    "confirmation_pending",
+    "tool_completed",
+    "tool_error",
+    "handoff_required",
+    "handoff_created",
+    "completed",
+    "blocked"
+  ],
+  "verification_statuses": [
+    "not_required",
+    "not_started",
+    "verified",
+    "failed",
+    "error"
+  ],
+  "tool_statuses": [
+    "not_called",
+    "pending",
+    "success",
+    "failed",
+    "timeout",
+    "unknown"
+  ],
+  "safety_statuses": [
+    "safe",
+    "blocked",
+    "handoff_required"
+  ],
+  "human_handling_statuses": [
+    "not_required",
+    "required_later",
+    "ready_now",
+    "created"
+  ],
+  "priorities": [
+    "low",
+    "normal",
+    "high",
+    "critical"
+  ],
+  "reason_codes": [
+    "missing_required_field",
+    "invalid_field",
+    "ambiguous_entity",
+    "conflicting_information",
+    "ambiguous_intent",
+    "clarification_limit_reached",
+    "verification_failed",
+    "verification_attempts_exceeded",
+    "insufficient_policy_evidence",
+    "tool_unavailable",
+    "tool_execution_failed",
+    "side_effect_unknown",
+    "refund_requires_human",
+    "user_requested_human",
+    "payment_dispute",
+    "product_safety_risk",
+    "suspected_fraud",
+    "prompt_injection",
+    "unauthorized_action",
+    "sensitive_data_request",
+    "unsupported_request",
+    "complex_multi_intent",
+    "delivery_dispute",
+    "return_eligibility_dispute"
+  ],
+  "tool_error_codes": [
+    "timeout",
+    "unavailable",
+    "invalid_response",
+    "not_found",
+    "duplicate",
+    "idempotency_required",
+    "side_effect_unknown"
+  ],
+  "business_result_codes": [
+    "policy_answered",
+    "order_status_returned",
+    "eligible",
+    "not_eligible",
+    "return_request_created",
+    "ticket_created",
+    "user_declined"
+  ],
+  "entity_fields": [
+    "order_id",
+    "customer_email",
+    "item_id",
+    "product_name",
+    "resolved_item_id",
+    "policy_category",
+    "issue_description",
+    "damage_type",
+    "return_reason",
+    "refund_reason",
+    "refund_scope",
+    "user_confirmation"
+  ],
+  "default_route_by_intent": {
+    "policy_question": "retrieve_policy",
+    "order_tracking": "execute_order",
+    "return_request": "execute_return",
+    "damaged_product": "execute_ticket",
+    "refund_request": "human_handoff",
+    "unknown": "clarify"
+  },
+  "required_fields_by_intent": {
+    "policy_question": [],
+    "order_tracking": [
+      "order_id",
+      "customer_email"
+    ],
+    "return_request": [
+      "order_id",
+      "customer_email",
+      "item_reference"
+    ],
+    "damaged_product": [
+      "order_id",
+      "customer_email",
+      "item_reference",
+      "issue_description"
+    ],
+    "refund_request": [
+      "order_id",
+      "customer_email",
+      "refund_reason"
+    ],
+    "unknown": []
+  },
+  "business_tool_allowlist": {
+    "policy_question": [
+      "search_policy"
+    ],
+    "order_tracking": [
+      "verify_order_owner",
+      "get_order_status"
+    ],
+    "return_request": [
+      "verify_order_owner",
+      "find_order_item",
+      "check_return_eligibility",
+      "create_return_request"
+    ],
+    "damaged_product": [
+      "verify_order_owner",
+      "find_order_item",
+      "create_support_ticket"
+    ],
+    "refund_request": [
+      "verify_order_owner"
+    ],
+    "unknown": []
+  },
+  "global_control_tools": [
+    "request_human_handoff"
+  ],
+  "tools": {
+    "search_policy": {
+      "kind": "read",
+      "side_effect": false
+    },
+    "verify_order_owner": {
+      "kind": "read",
+      "side_effect": false
+    },
+    "get_order_status": {
+      "kind": "read",
+      "side_effect": false
+    },
+    "find_order_item": {
+      "kind": "read",
+      "side_effect": false
+    },
+    "check_return_eligibility": {
+      "kind": "read",
+      "side_effect": false
+    },
+    "create_return_request": {
+      "kind": "write",
+      "side_effect": true
+    },
+    "create_support_ticket": {
+      "kind": "write",
+      "side_effect": true
+    },
+    "request_human_handoff": {
+      "kind": "write",
+      "side_effect": true
+    }
+  },
+  "risk_priority": {
+    "refund_request": 5,
+    "damaged_product": 4,
+    "return_request": 3,
+    "order_tracking": 2,
+    "policy_question": 1,
+    "unknown": 0
+  },
+  "limits": {
+    "clarification_attempts_per_field": 2,
+    "intent_clarification_attempts": 2,
+    "read_tool_retries": 1,
+    "structured_output_retries": 2
+  }
+}

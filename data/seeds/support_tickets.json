@@ -1,0 +1,68 @@
+[
+  {
+    "ticket_id": "TICKET-0001",
+    "order_id": "MD-2003",
+    "item_id": "ITEM-006",
+    "issue_description": "Ấm siêu tốc có mùi khét và phát tia lửa khi cắm điện.",
+    "damage_type": "unsafe",
+    "priority": "critical",
+    "status": "open",
+    "idempotency_key": "seed-ticket-md2003-item006",
+    "created_days_ago": 1
+  },
+  {
+    "ticket_id": "TICKET-0002",
+    "order_id": "MD-2010",
+    "item_id": "ITEM-016",
+    "issue_description": "Bình thủy tinh bị nứt khi mở hộp.",
+    "damage_type": "broken",
+    "priority": "high",
+    "status": "open",
+    "idempotency_key": "seed-ticket-md2010-item016",
+    "created_days_ago": 1
+  },
+  {
+    "ticket_id": "TICKET-0003",
+    "order_id": "MD-2010",
+    "item_id": "ITEM-031",
+    "issue_description": "Cốc sứ bị mẻ cạnh.",
+    "damage_type": "broken",
+    "priority": "normal",
+    "status": "pending",
+    "idempotency_key": "seed-ticket-md2010-item031",
+    "created_days_ago": 1
+  },
+  {
+    "ticket_id": "TICKET-0004",
+    "order_id": "MD-1052",
+    "item_id": "ITEM-001",
+    "issue_description": "Khách hỏi cập nhật vận chuyển vì đơn chưa tới.",
+    "damage_type": "shipping_delay",
+    "priority": "normal",
+    "status": "open",
+    "idempotency_key": "seed-ticket-md1052-shipping",
+    "created_days_ago": 0
+  },
+  {
+    "ticket_id": "TICKET-0005",
+    "order_id": "MD-2008",
+    "item_id": "ITEM-013",
+    "issue_description": "Khách hỏi về chính sách đổi trả sau khi quá 7 ngày.",
+    "damage_type": "return_question",
+    "priority": "low",
+    "status": "resolved",
+    "idempotency_key": "seed-ticket-md2008-return-question",
+    "created_days_ago": 0
+  },
+  {
+    "ticket_id": "TICKET-0006",
+    "order_id": "MD-2012",
+    "item_id": "ITEM-020",
+    "issue_description": "Case dùng để kiểm thử email không đúng chủ đơn.",
+    "damage_type": "authorization_test",
+    "priority": "low",
+    "status": "closed",
+    "idempotency_key": "seed-ticket-md2012-auth-test",
+    "created_days_ago": 0
+  }
+]

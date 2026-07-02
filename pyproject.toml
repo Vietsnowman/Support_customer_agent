@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecommerce-support-agent-mini"
+version = "0.1.0"
+description = "Vietnamese e-commerce support agent prototype with deterministic tools and SQLite mock data"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "pydantic>=2.7,<3",
+  "email-validator>=2.1,<3",
+  "python-dotenv>=1,<2"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<10",
+  "jsonschema>=4.22,<5"
+]
+
+[project.scripts]
+support-agent-db = "support_agent.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"support_agent.db" = ["schema.sql"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

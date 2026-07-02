@@ -1,0 +1,46 @@
+[
+  {
+    "return_request_id": "RET-0001",
+    "order_id": "MD-2001",
+    "item_id": "ITEM-004",
+    "reason": "Không vừa kích thước.",
+    "eligibility_code": "eligible",
+    "rule_version": "return-rules-v1",
+    "status": "pending_review",
+    "idempotency_key": "seed-return-md2001-item004",
+    "created_days_ago": 1
+  },
+  {
+    "return_request_id": "RET-0002",
+    "order_id": "MD-2007",
+    "item_id": "ITEM-012",
+    "reason": "Muốn đổi size nhưng vẫn trong hạn 7 ngày.",
+    "eligibility_code": "eligible",
+    "rule_version": "return-rules-v1",
+    "status": "pending_review",
+    "idempotency_key": "seed-return-md2007-item012",
+    "created_days_ago": 0
+  },
+  {
+    "return_request_id": "RET-0003",
+    "order_id": "MD-2008",
+    "item_id": "ITEM-013",
+    "reason": "Yêu cầu trả hàng sau 8 ngày.",
+    "eligibility_code": "return_window_expired",
+    "rule_version": "return-rules-v1",
+    "status": "rejected",
+    "idempotency_key": "seed-return-md2008-item013",
+    "created_days_ago": 0
+  },
+  {
+    "return_request_id": "RET-0004",
+    "order_id": "MD-2002",
+    "item_id": "ITEM-005",
+    "reason": "Sản phẩm thuộc nhóm không đổi trả.",
+    "eligibility_code": "item_not_returnable",
+    "rule_version": "return-rules-v1",
+    "status": "rejected",
+    "idempotency_key": "seed-return-md2002-item005",
+    "created_days_ago": 0
+  }
+]
